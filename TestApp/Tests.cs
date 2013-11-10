@@ -15,5 +15,13 @@ namespace TestApp
             var sum = sut.Add();
             Assert.AreEqual(0, sum);
         }
+
+        [Test]
+        public void TestAddOne()
+        {
+            var sut = new Calc();
+            var sum = sut.Add("1");
+            Assert.AreEqual(1, sum);
+        }
     }
 }
