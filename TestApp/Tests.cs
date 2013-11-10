@@ -51,5 +51,12 @@ namespace TestApp
             var sum = sut.Add("1,0");
             Assert.AreEqual(1, sum);
         }
+
+        [TestCase ("", 0)]
+        public void TestAdd(string input, decimal result)
+        {
+            var sum = sut.Add("1,0");
+            Assert.AreEqual(1, sum);
+        }
     }
 }
