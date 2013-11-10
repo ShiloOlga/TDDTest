@@ -7,7 +7,7 @@ namespace TestApp
 {
     class Calc
     {
-        internal decimal Add()
+        internal decimal Add(string s = null)
         {
             return 0;
         }
