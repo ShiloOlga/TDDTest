@@ -7,9 +7,9 @@ namespace TestApp
 {
     class Calc
     {
-        internal object Add()
+        internal decimal Add()
         {
-            return null;
+            return 0;
         }
     }
 }
