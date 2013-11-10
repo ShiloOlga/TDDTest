@@ -12,7 +12,7 @@ namespace TestApp
         public void TestAddEmptyString()
         {
             var sut = new Calc();
-            var sum = calc.Add();
+            var sum = sut.Add();
             Assert.AreEqual(0, sum);
         }
     }
