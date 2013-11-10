@@ -13,10 +13,11 @@ namespace TestApp
                 return 0;
             if (s.Length == 1)
                 return decimal.Parse(s);
-            if (s.Equals("0,0"))
-                return 0;
-            if (s.Equals("0,1"))
-                return 1;
+            if (s.Length == 3)
+            {
+                var args = s.Split(',');
+                return decimal.Parse(args[0]) + decimal.Parse(args[1]);
+            }
             return 0;
         }
     }
