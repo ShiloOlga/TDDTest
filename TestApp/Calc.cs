@@ -9,7 +9,7 @@ namespace TestApp
     {
         internal decimal Add(string s = null)
         {
-            return 0;
+            return string.IsNullOrEmpty(s) ? 0 : 1;
         }
     }
 }
