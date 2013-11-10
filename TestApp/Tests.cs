@@ -30,5 +30,12 @@ namespace TestApp
             var sum = sut.Add("2");
             Assert.AreEqual(2, sum);
         }
+
+        [Test]
+        public void TestAddZeroZero()
+        {
+            var sum = sut.Add("0,0");
+            Assert.AreEqual(0, sum);
+        }
     }
 }
