@@ -14,7 +14,10 @@ namespace TestApp
             if (s.Length == 1)
                 return decimal.Parse(s);
             var args = s.Split(',');
-            return decimal.Parse(args[0]) + decimal.Parse(args[1]);
+            decimal result = 0;
+            foreach (var arg in args)
+                result += decimal.Parse(arg);
+            return result;
         }
     }
 }
