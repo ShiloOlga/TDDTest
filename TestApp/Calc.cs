@@ -9,11 +9,18 @@ namespace TestApp
     {
         internal decimal Add(string s = null)
         {
-            if (string.IsNullOrEmpty(s))
+            var _s = s;
+            if (string.IsNullOrEmpty(_s))
                 return 0;
-            if (s.Length == 1)
-                return decimal.Parse(s);
-            var args = s.Split(new char[] {',', '\n'});
+            if (_s.Length == 1)
+                return decimal.Parse(_s);
+            var delimiters = new List<char> { ',', '\n' };
+            if (_s.StartsWith("//") && s.Substring(3, 1).Equals("\n"))
+            {
+                _s = _s.Substring(4);
+                delimiters.Insert(0, char.Parse(_s.Substring(2, 1)));
+            }
+            var args = _s.Split(delimiters.ToArray());
             decimal result = 0;
             foreach (var arg in args)
                 result += decimal.Parse(arg);
