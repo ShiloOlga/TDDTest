@@ -17,8 +17,8 @@ namespace TestApp
             var delimiters = new List<char> { ',', '\n' };
             if (_s.StartsWith("//") && s.Substring(3, 1).Equals("\n"))
             {
-                _s = _s.Substring(4);
                 delimiters.Insert(0, char.Parse(_s.Substring(2, 1)));
+                _s = _s.Substring(4);
             }
             var args = _s.Split(delimiters.ToArray());
             decimal result = 0;
