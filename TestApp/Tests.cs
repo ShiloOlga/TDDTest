@@ -27,12 +27,18 @@ namespace TestApp
         [TestCase("8,4\n2", 14)]
         [TestCase("//;\n10;3", 13)]
         [TestCase("//;\n1;3,2\n4", 10)]
-        [TestCase("-2", -2)]
-        [TestCase("-3,-1", -4)]
         public void TestAdd(string input, decimal result)
         {
             var sum = sut.Add(input);
             Assert.AreEqual(result, sum);
+        }
+
+        [TestCase("-2", "negatives not allowed: -2")]
+        [TestCase("-3,-1", "negatives not allowed: -3,-1")]
+        public void TestAddWithExceptionOnNegative(string input, string message)
+        {
+            var e = Assert.Throws(typeof(Exception), () => sut.Add(input));
+            Assert.That(e.Message.Equals(message));
         }
     }
 }
