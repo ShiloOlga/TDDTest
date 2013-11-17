@@ -21,10 +21,8 @@ namespace TestApp
                 _s = _s.Substring(4);
             }
             var args = _s.Split(delimiters.ToArray());
-            decimal result = 0;
-            foreach (var arg in args)
-                result += decimal.Parse(arg);
-            return result;
+            var numbers = args.Select(p => decimal.Parse(p)).ToArray();
+            return numbers.Sum();
         }
     }
 }
