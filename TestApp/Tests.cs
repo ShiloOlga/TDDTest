@@ -35,6 +35,7 @@ namespace TestApp
 
         [TestCase("-2", "negatives not allowed: -2")]
         [TestCase("-3,-1", "negatives not allowed: -3,-1")]
+        [TestCase("//;\n1;-3,-2\n-4", "negatives not allowed: -3,-2,-4")]
         public void TestAddWithExceptionOnNegative(string input, string message)
         {
             var e = Assert.Throws(typeof(Exception), () => sut.Add(input));
