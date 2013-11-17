@@ -22,6 +22,11 @@ namespace TestApp
             }
             var args = _s.Split(delimiters.ToArray());
             var numbers = args.Select(p => decimal.Parse(p)).ToArray();
+            if (numbers.Any(p => p < 0))
+                throw new Exception(string.Format("negatives not allowed: " + numbers
+                    .Where(p => p < 0)
+                    .Select(p => p.ToString())
+                    .Aggregate((i, j) => string.Concat(i, ",", j))));
             return numbers.Sum();
         }
     }
