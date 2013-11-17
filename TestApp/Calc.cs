@@ -13,7 +13,7 @@ namespace TestApp
                 return 0;
             if (s.Length == 1)
                 return decimal.Parse(s);
-            var args = s.Split(',');
+            var args = s.Split(new char[] {',', '\n'});
             decimal result = 0;
             foreach (var arg in args)
                 result += decimal.Parse(arg);
