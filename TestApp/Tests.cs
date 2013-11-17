@@ -21,6 +21,8 @@ namespace TestApp
         [TestCase("1,2", 3)]
         [TestCase("2,1", 3)]
         [TestCase("2,2", 4)]
+        [TestCase("1,3", 4)]
+        [TestCase("10,32", 42)]
         public void TestAdd(string input, decimal result)
         {
             var sum = sut.Add(input);
