@@ -53,5 +53,12 @@ namespace TestApp
             var sum = sut.Add(input);
             Assert.AreEqual(result, sum);
         }
+
+        [TestCase("//[*_*]\n10*_*15", 25)]
+        public void TestAddWithLongDelimiter(string input, decimal result)
+        {
+            var sum = sut.Add(input);
+            Assert.AreEqual(result, sum);
+        }
     }
 }
