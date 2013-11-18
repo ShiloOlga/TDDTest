@@ -41,5 +41,17 @@ namespace TestApp
             var e = Assert.Throws(typeof(Exception), () => sut.Add(input));
             Assert.That(e.Message.Equals(message));
         }
+
+
+        [TestCase("3000", 0)]
+        [TestCase("0,1000", 0)]
+        [TestCase("2999,57", 57)]
+        [TestCase("1110,9862", 0)]
+        [TestCase("//;\n10;8073", 10)]
+        public void TestAddThousands(string input, decimal result)
+        {
+            var sum = sut.Add(input);
+            Assert.AreEqual(result, sum);
+        }
     }
 }
