@@ -15,7 +15,7 @@ namespace TestApp
                 return 0;
             if (_s.Length == 1)
                 return decimal.Parse(_s);
-            var delimiters = GetDelimiters(s, ref _s);
+            var delimiters = GetDelimiters(ref _s);
             var args = _s.Split(delimiters, StringSplitOptions.None);
             var numbers = args.Select(p => decimal.Parse(p)).ToArray();
             if (numbers.Any(p => p < 0))
@@ -26,12 +26,12 @@ namespace TestApp
             return numbers.Where(p => p < 1001).Sum();
         }
 
-        private static string[] GetDelimiters(string s, ref string _s)
+        private static string[] GetDelimiters(ref string _s)
         {
             var delimiters = new List<string> { ",", "\n" };
             if (_s.StartsWith("//") && _s.Contains("\n"))
             {
-                if (s.Substring(3, 1).Equals("\n"))
+                if (_s.Substring(3, 1).Equals("\n"))
                 {
                     delimiters.Insert(0, _s.Substring(2, 1));
                 }
