@@ -27,7 +27,7 @@ namespace TestApp
                     .Where(p => p < 0)
                     .Select(p => p.ToString())
                     .Aggregate((i, j) => string.Concat(i, ",", j))));
-            return numbers.Sum();
+            return numbers.Where(p => p < 1001).Sum();
         }
     }
 }
