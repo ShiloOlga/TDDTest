@@ -44,7 +44,7 @@ namespace TestApp
 
 
         [TestCase("3000", 0)]
-        [TestCase("0,1000", 0)]
+        [TestCase("0,1000", 1000)]
         [TestCase("2999,57", 57)]
         [TestCase("1110,9862", 0)]
         [TestCase("//;\n10;8073", 10)]
