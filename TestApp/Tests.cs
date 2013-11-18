@@ -57,6 +57,7 @@ namespace TestApp
         [TestCase("//[*_*]\n10*_*15", 25)]
         [TestCase("//[*]\n10*5*3", 18)]
         [TestCase("//[*][%]\n10*5%3", 18)]
+        [TestCase("//[***][%][;;]\n1;;10%100***1000", 1111)]
         public void TestAddWithLongDelimiter(string input, decimal result)
         {
             var sum = sut.Add(input);
