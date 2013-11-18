@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace TestApp
 {
@@ -15,7 +16,7 @@ namespace TestApp
             if (_s.Length == 1)
                 return decimal.Parse(_s);
             var delimiters = GetDelimiters(s, ref _s);
-            var args = _s.Split(delimiters);
+            var args = _s.Split(delimiters, StringSplitOptions.None);
             var numbers = args.Select(p => decimal.Parse(p)).ToArray();
             if (numbers.Any(p => p < 0))
                 throw new Exception(string.Format("negatives not allowed: " + numbers
@@ -25,14 +26,30 @@ namespace TestApp
             return numbers.Where(p => p < 1001).Sum();
         }
 
-        private static char[] GetDelimiters(string s, ref string _s)
+        private static string[] GetDelimiters(string s, ref string _s)
         {
-            var delimiters = new List<char> { ',', '\n' };
-            if (_s.StartsWith("//") && s.Substring(3, 1).Equals("\n"))
+            var delimiters = new List<string> { ",", "\n" };
+            if (_s.StartsWith("//"))
             {
-                delimiters.Insert(0, char.Parse(_s.Substring(2, 1)));
-                _s = _s.Substring(4);
+                if (s.Substring(3, 1).Equals("\n"))
+                {
+                    delimiters.Insert(0, _s.Substring(2, 1));
+                    _s = _s.Substring(4);
+                }
+                else
+                {
+                    var matches = Regex.Matches(_s, @"\[(.+)+\]");
+                    if (matches.Count > 0)
+                    {
+                        foreach (var m in matches)
+                        {
+                            var matchString = m.ToString();
+                            delimiters.Add(matchString.Substring(1, matchString.Length - 2));
+                        }
+                    }
+                }
             }
+
             return delimiters.ToArray();
         }
     }
