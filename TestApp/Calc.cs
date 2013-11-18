@@ -29,12 +29,11 @@ namespace TestApp
         private static string[] GetDelimiters(string s, ref string _s)
         {
             var delimiters = new List<string> { ",", "\n" };
-            if (_s.StartsWith("//"))
+            if (_s.StartsWith("//") && _s.Contains("\n"))
             {
                 if (s.Substring(3, 1).Equals("\n"))
                 {
                     delimiters.Insert(0, _s.Substring(2, 1));
-                    _s = _s.Substring(4);
                 }
                 else
                 {
@@ -48,6 +47,7 @@ namespace TestApp
                         }
                     }
                 }
+                _s = _s.Substring(_s.IndexOf("\n") + 1);
             }
 
             return delimiters.ToArray();
