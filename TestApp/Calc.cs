@@ -37,7 +37,7 @@ namespace TestApp
                 }
                 else
                 {
-                    var matches = Regex.Matches(_s, @"\[(.+)+\]");
+                    var matches = Regex.Matches(_s, @"\[(.+?)+?\]");
                     if (matches.Count > 0)
                     {
                         foreach (var m in matches)
